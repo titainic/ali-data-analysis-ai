@@ -60,15 +60,15 @@ public class CorrelationSpark
         String[] col = {"v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8"};
         VectorAssembler assembler = new VectorAssembler();
         assembler.setInputCols(col).setOutputCol("features");
-        Dataset<Row> tmpds = assembler.transform(dataDS).select(col("features"));
+        Dataset<Row> vectorDS = assembler.transform(dataDS).select(col("features"));
 
-        tmpds.show();
+        vectorDS.show();
 
-        Row corrPearson = Correlation.corr(tmpds, "features").head();
+        Row corrPearson = Correlation.corr(vectorDS, "features").head();
         Matrix cMatrix = (Matrix) corrPearson.get(0);
         System.out.println("Pearson correlation matrix:\n" +cMatrix.toString(8,500));
 
-        Row corrSpearman = Correlation.corr(tmpds, "features","spearman").head();
+        Row corrSpearman = Correlation.corr(vectorDS, "features","spearman").head();
         Matrix sMatrix = (Matrix) corrSpearman.get(0);
         System.out.println("Spearman correlation matrix:\n" +sMatrix.toString(8,500));
 
