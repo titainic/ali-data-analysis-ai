@@ -32,18 +32,5 @@ plt.show()
 
 
 
-'''
-获取异常数据函数
-'''
-def fund_outkiners(model,X,y,signa=3):
-    try:
-        y_pred = pd.Series(mode.predice(),index=y.index)
-    except:
-        model.fit(X,y)
-        y_pred = pd.Series(model.predice(x),index=y.index)
 
-    # 计算模型预测和真实y值之间的残差
-    resid = y - y_pred
-    mean_resid = resid.mean()
-    ste_resid = resid.std()
 
