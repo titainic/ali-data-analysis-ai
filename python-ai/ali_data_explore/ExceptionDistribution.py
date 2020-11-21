@@ -1,9 +1,6 @@
-import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy import stats
+from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import Ridge
 
 
@@ -28,21 +25,21 @@ def find_outliners(model, X, y, sigma=3):
     outliners = z[abs(z) > sigma].index
 
     # 打印并绘制结果
-    print("R2=",model.score(X,y))
-    print("mse=",mean_squared_error(y,y_pred))
+    print("R2=", model.score(X, y))
+    print("mse=", mean_squared_error(y, y_pred))
     print('---------------------------------------')
 
-    print("mean of residuals",mean_resid)
-    print("std of residuals",std_resid)
+    print("mean of residuals", mean_resid)
+    print("std of residuals", std_resid)
     print('---------------------------------------')
 
-    print(len(outliners),"outliers:")
+    print(len(outliners), "outliers:")
     print(outliners.tolist())
 
-    plt.figure(figsize=(15,5))
-    ax_131 = plt.subplot(1,3,1)
-    plt.plot(y,y_pred,".")
-    plt.plot(y.loc[outliners],y_pred.loc[outliners],'ro')
+    plt.figure(figsize=(15, 5))
+    ax_131 = plt.subplot(1, 3, 1)
+    plt.plot(y, y_pred, ".")
+    plt.plot(y.loc[outliners], y_pred.loc[outliners], 'ro')
     plt.legend(['Accepted', 'Outlier'])
     plt.xlabel('y')
     plt.ylabel('y_pred');
@@ -60,9 +57,10 @@ def find_outliners(model, X, y, sigma=3):
     plt.legend(['Accepted', 'Outlier'])
     plt.xlabel('z')
     plt.show()
-    plt.savefig('outliers.png')
+    # plt.savefig('outliers.png')
 
     return outliners
+
 
 if __name__ == '__main__':
     train_data_file = "../data/zhengqi_train.txt"
@@ -71,6 +69,9 @@ if __name__ == '__main__':
     train_data = pd.read_csv(train_data_file, sep='\t', encoding='utf-8')
     test_data = pd.read_csv(test_data_file, sep='\t', encoding='utf-8')
 
+    print(train_data)
+    print("---------------")
     x_train = train_data.iloc[:, 0:-1]
     y_train = train_data.iloc[:, -1]
-    outliers =find_outliners(Ridge(),x_train,y_train)
+    print(x_train)
+    outliers = find_outliners(Ridge(), x_train, y_train)
