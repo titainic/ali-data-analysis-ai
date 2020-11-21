@@ -5,6 +5,7 @@ from sklearn.linear_model import Ridge
 
 
 # 数据的异常值分布
+# https://www.debugger.wiki/article/html/1563068783112436 岭回归
 def find_outliners(model, X, y, sigma=3):
     # 使用模型预测值
     # try:
@@ -69,9 +70,9 @@ if __name__ == '__main__':
     train_data = pd.read_csv(train_data_file, sep='\t', encoding='utf-8')
     test_data = pd.read_csv(test_data_file, sep='\t', encoding='utf-8')
 
-    print(train_data)
+    # print(train_data)
     print("---------------")
     x_train = train_data.iloc[:, 0:-1]
     y_train = train_data.iloc[:, -1]
-    print(x_train)
+    # print(x_train)
     outliers = find_outliners(Ridge(), x_train, y_train)
