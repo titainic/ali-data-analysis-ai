@@ -19,6 +19,10 @@ import java.util.List;
 import static org.apache.spark.sql.functions.col;
 
 /**
+ * 数据相关性
+ *
+ *
+ *
  * 针对【连续、正态分布、线性】数据，采用pearson相关系数；
  * 针对【非线性的、非正态】数据，采用spearman相关系数；
  * 针对【分类变量、无序】数据，采用Kendall

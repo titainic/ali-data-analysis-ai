@@ -70,9 +70,7 @@ if __name__ == '__main__':
     train_data = pd.read_csv(train_data_file, sep='\t', encoding='utf-8')
     test_data = pd.read_csv(test_data_file, sep='\t', encoding='utf-8')
 
-    # print(train_data)
     print("---------------")
     x_train = train_data.iloc[:, 0:-1]
     y_train = train_data.iloc[:, -1]
-    # print(x_train)
     outliers = find_outliners(Ridge(), x_train, y_train)
